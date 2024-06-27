@@ -5,6 +5,12 @@ This is the official implementation of *Gamba: Marry Gaussian Splatting with Mam
 
 ### [Project Page](https://florinshen.github.io/gamba-project) | [Arxiv](https://arxiv.org/abs/2403.18795) | [Weights](https://huggingface.co/florinshen/Gamba)
 
+### Why Gamba
+🔥 Reconstruct 3D object from a single image input within 50 milliseconds. 
+
+
+🔥 First end-to-end trainable single-view reconstruction model with 3DGS.
+
 https://github.com/SkyworkAI/Gamba/assets/44775545/21bdc4e7-e070-446a-8fb7-401c9ee69921
 
 ### Install
@@ -50,7 +56,7 @@ For more options, please check [options](./core/options.py).
 
 ### Training
 
-We will update training details soon. 
+We will update training tutorials soon. 
 
 
 ### Acknowledgement
