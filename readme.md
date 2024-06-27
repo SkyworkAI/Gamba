@@ -13,7 +13,7 @@ https://github.com/SkyworkAI/Gamba/assets/44775545/21bdc4e7-e070-446a-8fb7-401c9
 # xformers is required! please refer to https://github.com/facebookresearch/xformers for details.
 # for example, we use torch 2.1.0 + cuda 11.8
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
-pip install causal-conv1d>=1.2.0 mamba-ssm
+pip install causal-conv1d==1.2.0 mamba-ssm
 git clone --recursive git@github.com:SkyworkAI/Gamba.git
 # a modified gaussian splatting (+ depth, alpha rendering)
 pip install ./submodules/diff-gaussian-rasterization
@@ -29,18 +29,18 @@ pip install -r requirements.txt
 
 ### Pretrained Weights
 
-Our pretrained weight can be downloaded from [huggingface](https://huggingface.co/ashawkey/LGM).
+Our pretrained weight can be downloaded from [huggingface](https://huggingface.co/florinshen/Gamba).
 
-For example, to download the fp16 model for inference:
+For example, to download the bf16 model for inference:
 ```bash
 mkdir checkpoint && cd checkpoint
-wget https://huggingface.co/ashawkey/LGM/resolve/main/model_fp16.safetensors
+wget https://huggingface.co/florinshen/Gamba/resolve/main/gamba_ep399.pth
 cd ..
 ```
 
 ### Inference
 
-Inference takes about 10GB GPU memory (loading all imagedream, mvdream, and our LGM).
+Inference takes about 1.5GB GPU memory within 50 milliseconds.
 
 ```bash
 bash scripts/test.sh
