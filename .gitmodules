@@ -1,0 +1,6 @@
+[submodule "submodules/rad-polygon-mask"]
+	path = submodules/rad-polygon-mask
+	url = git@github.com:florinshen/rad-polygon-mask.git
+[submodule "submodules/diff-gaussian-rasterization"]
+	path = submodules/diff-gaussian-rasterization
+	url = git@github.com:ashawkey/diff-gaussian-rasterization.git
