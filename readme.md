@@ -5,11 +5,7 @@ This is the official implementation of *Gamba: Marry Gaussian Splatting with Mam
 
 ### [Project Page](https://florinshen.github.io/gamba-project) | [Arxiv](https://arxiv.org/abs/2403.18795) | [Weights](https://huggingface.co/florinshen/Gamba)
 
-<!-- https://github.com/florinshen/gamba-project/raw/webpage/video/gamba-teaser.mp4 -->
-
-<video controls>
-  <source src="./assets/gamba-teaser.mp4" type="video/mp4">
-</video>
+https://github.com/SkyworkAI/Gamba/assets/44775545/21bdc4e7-e070-446a-8fb7-401c9ee69921
 
 ### Install
 
