@@ -7,7 +7,7 @@ This is the official implementation of *Gamba: Marry Gaussian Splatting with Mam
 
 <!-- https://github.com/florinshen/gamba-project/raw/webpage/video/gamba-teaser.mp4 -->
 
-<video>
+<video controls>
   <source src="./assets/gamba-teaser.mp4" type="video/mp4">
 </video>
 
