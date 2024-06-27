@@ -11,6 +11,7 @@ import torch.nn.functional as F
 import torchvision.transforms.functional as TF
 from safetensors.torch import load_file
 import rembg
+import cv2
 
 import kiui
 from kiui.op import recenter
@@ -65,22 +66,31 @@ def process(opt: Options, path):
     print(f'[INFO] Processing {path} --> {name}')
     os.makedirs(opt.workspace, exist_ok=True)
     
-    # import pdb; pdb.set_trace()
-    input_image = kiui.read_image(path, mode='uint8')
+    # load an rgba image
+    input_image = cv2.imread(path, cv2.IMREAD_UNCHANGED)
+    if input_image.shape[-1] == 3:
+        # lgm preprocessing
+        input_image = kiui.read_image(path, mode='uint8')
+        # bg removal
+        carved_image = rembg.remove(input_image, session=bg_remover) # [H, W, 4]
+        mask = carved_image[..., -1] > 0
 
-    # bg removal
-    carved_image = rembg.remove(input_image, session=bg_remover) # [H, W, 4]
-    mask = carved_image[..., -1] > 0
+        # recenter
+        image = recenter(carved_image, mask, border_ratio=0.2)
+        
+        # generate mv
+        image = image.astype(np.float32) / 255.0
 
-    # recenter
-    image = recenter(carved_image, mask, border_ratio=0.2)
-    
-    # generate mv
-    image = image.astype(np.float32) / 255.0
-
-    # rgba to rgb white bg
-    if image.shape[-1] == 4:
+        # rgba to rgb white bg
+        if image.shape[-1] == 4:
+            image = image[..., :3] * image[..., 3:4] + (1 - image[..., 3:4])
+    elif input_image.shape[-1] == 4:
+        # convert bgra to rgba 
+        input_image = cv2.cvtColor(input_image, cv2.COLOR_BGRA2RGBA)
+        image = input_image.astype(np.float32) / 255.0
         image = image[..., :3] * image[..., 3:4] + (1 - image[..., 3:4])
+    else:
+        raise NotImplementedError
 
     # mv_image = pipe('', image, guidance_scale=5.0, num_inference_steps=30, elevation=0)
     # mv_image = np.stack([mv_image[1], mv_image[2], mv_image[3], mv_image[0]], axis=0) # [4, 256, 256, 3], float32

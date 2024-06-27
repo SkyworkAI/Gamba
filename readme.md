@@ -13,8 +13,7 @@ https://github.com/SkyworkAI/Gamba/assets/44775545/21bdc4e7-e070-446a-8fb7-401c9
 # xformers is required! please refer to https://github.com/facebookresearch/xformers for details.
 # for example, we use torch 2.1.0 + cuda 11.8
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
-pip install -U xformers --index-url https://download.pytorch.org/whl/cu118
-
+pip install causal-conv1d>=1.2.0 mamba-ssm
 git clone --recursive git@github.com:SkyworkAI/Gamba.git
 # a modified gaussian splatting (+ depth, alpha rendering)
 pip install ./submodules/diff-gaussian-rasterization
@@ -44,49 +43,22 @@ cd ..
 Inference takes about 10GB GPU memory (loading all imagedream, mvdream, and our LGM).
 
 ```bash
-### gradio app for both text/image to 3D
-python app.py big --resume pretrained/model_fp16.safetensors
-
-### test
-# --workspace: folder to save output (*.ply and *.mp4)
-# --test_path: path to a folder containing images, or a single image
-python infer.py big --resume pretrained/model_fp16.safetensors --workspace workspace_test --test_path data_test 
-
-### local gui to visualize saved ply
-python gui.py big --output_size 800 --test_path workspace_test/saved.ply
-
-### mesh conversion
-python convert.py big --test_path workspace_test/saved.ply
+bash scripts/test.sh
 ```
 
 For more options, please check [options](./core/options.py).
 
 ### Training
 
-**NOTE**: 
-Since the dataset used in our training is based on AWS, it cannot be directly used for training in a new environment.
-We provide the necessary training code framework, please check and modify the [dataset](./core/provider_objaverse.py) implementation!
-
-We also provide the **~80K subset of [Objaverse](https://objaverse.allenai.org/objaverse-1.0)** used to train LGM in [objaverse_filter](https://github.com/ashawkey/objaverse_filter).
-
-```bash
-# debug training
-accelerate launch --config_file acc_configs/gpu1.yaml main.py big --workspace workspace_debug
-
-# training (use slurm for multi-nodes training)
-accelerate launch --config_file acc_configs/gpu8.yaml main.py small --workspace /root/Results/workspace_plant
+We will update training details soon. 
 
 
-
-# training (gamba)
-accelerate launch --config_file acc_configs/gpu8.yaml main.py gamba --workspace /mnt/xuanyuyi/results/gamba_human
-
-```
 ### Acknowledgement
 
 This work is built on many amazing research works and open-source projects, thanks a lot to all the authors for sharing!
 
 - [LGM](https://github.com/3DTopia/LGM)
+- [OpenLRM](https://github.com/3DTopia/OpenLRM)
 - [gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting) and [diff-gaussian-rasterization](https://github.com/graphdeco-inria/diff-gaussian-rasterization)
 - [nvdiffrast](https://github.com/NVlabs/nvdiffrast)
 - [dearpygui](https://github.com/hoffstadt/DearPyGui)
