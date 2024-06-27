@@ -3,10 +3,13 @@
 
 This is the official implementation of *Gamba: Marry Gaussian Splatting with Mamba for single view 3D reconstruction*.
 
-### [Project Page](https://florinshen.github.io/gamba-project) | [Arxiv](https://arxiv.org/abs/2403.18795) | [Weights](https://huggingface.co/ashawkey/LGM) | <a href="https://huggingface.co/spaces/ashawkey/LGM"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Gradio%20Demo-Huggingface-orange"></a>
+### [Project Page](https://florinshen.github.io/gamba-project) | [Arxiv](https://arxiv.org/abs/2403.18795) | [Weights](https://huggingface.co/florinshen/Gamba)
 
-https://github.com/florinshen/gamba-project/raw/webpage/video/gamba-teaser.mp4
+<!-- https://github.com/florinshen/gamba-project/raw/webpage/video/gamba-teaser.mp4 -->
 
+<video>
+  <source src="./assets/gamba-teaser.mp4" type="video/mp4">
+</video>
 
 ### Install
 
@@ -16,9 +19,11 @@ https://github.com/florinshen/gamba-project/raw/webpage/video/gamba-teaser.mp4
 pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
 pip install -U xformers --index-url https://download.pytorch.org/whl/cu118
 
+git clone --recursive git@github.com:SkyworkAI/Gamba.git
 # a modified gaussian splatting (+ depth, alpha rendering)
-git clone --recursive https://github.com/ashawkey/diff-gaussian-rasterization
-pip install ./diff-gaussian-rasterization
+pip install ./submodules/diff-gaussian-rasterization
+# radial polygon mask, only in training,
+pip install ./submodules/rad-polygon-mask
 
 # for mesh extraction
 pip install git+https://github.com/NVlabs/nvdiffrast
@@ -33,13 +38,10 @@ Our pretrained weight can be downloaded from [huggingface](https://huggingface.c
 
 For example, to download the fp16 model for inference:
 ```bash
-mkdir pretrained && cd pretrained
+mkdir checkpoint && cd checkpoint
 wget https://huggingface.co/ashawkey/LGM/resolve/main/model_fp16.safetensors
 cd ..
 ```
-
-For [MVDream](https://github.com/bytedance/MVDream) and [ImageDream](https://github.com/bytedance/ImageDream), we use a [diffusers implementation](https://github.com/ashawkey/mvdream_diffusers).
-Their weights will be downloaded automatically.
 
 ### Inference
 
