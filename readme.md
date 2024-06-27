@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 ### Pretrained Weights
 
-Our pretrained weight can be downloaded from [huggingface](https://huggingface.co/florinshen/Gamba).
+Our pretrained weight can be downloaded from [huggingface](https://huggingface.co/florinshen/Gamba). A lager Model is comming on the way!
 
 For example, to download the bf16 model for inference:
 ```bash
