@@ -80,7 +80,7 @@ This work is built on many amazing research works and open-source projects, than
   year={2024}
 }
 ```
-Please also check our another project for unified 3D generation [Arxiv](https://arxiv.org/abs/2406.06367). The code and pretrained weights will also be released soon.
+Please also check our another project for unified 3D generation [MVGamba](https://arxiv.org/abs/2406.06367). The code and pretrained weights will also be released soon.
 
 ```bibtex
 @article{yi2024mvgamba,
