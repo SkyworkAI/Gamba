@@ -72,11 +72,19 @@ This work is built on many amazing research works and open-source projects, than
 
 ### Citation
 
-```
+```bibtex
 @article{shen2024gamba,
   title={Gamba: Marry gaussian splatting with mamba for single view 3d reconstruction},
   author={Shen, Qiuhong and Wu, Zike and Yi, Xuanyu and Zhou, Pan and Zhang, Hanwang and Yan, Shuicheng and Wang, Xinchao},
   journal={arXiv preprint arXiv:2403.18795},
+  year={2024}
+}
+```
+```bibtex
+@article{yi2024mvgamba,
+  title={MVGamba: Unify 3D Content Generation as State Space Sequence Modeling},
+  author={Yi, Xuanyu and Wu, Zike and Shen, Qiuhong and Xu, Qingshan and Zhou, Pan and Lim, Joo-Hwee and Yan, Shuicheng and Wang, Xinchao and Zhang, Hanwang},
+  journal={arXiv preprint arXiv:2406.06367},
   year={2024}
 }
 ```
